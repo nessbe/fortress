@@ -1,4 +1,4 @@
-:: File:        setup.bat
+:: File:        install-citadel.bat
 :: Project:     fortress
 :: Repository:  https://github.com/nessbe/fortress
 ::
@@ -19,10 +19,40 @@
 
 @echo off
 
-echo Installing Citadel library...
-call install-citadel.bat
+set "REPO_URL=https://github.com/nessbe/citadel"
+set "OUTPUT_DIR=citadel"
 
-echo Generating project files using Premake...
-call generate-projects.bat
+:: Check if Git is installed
+where git >nul 2>&1
 
-pause
+if %errorlevel% neq 0 (
+	echo Git is not installed, or is not in the PATH.
+	echo Please install it and put it in the PATH, then try again.
+	exit /b 1
+)
+
+cd "..\"
+
+:: Check if the output directory already exists
+if exist "%OUTPUT_DIR%" (
+	echo Citadel library already installed. Continuing...
+	goto success
+)
+
+git clone %REPO_URL% %OUTPUT_DIR%
+
+if %errorlevel% equ 0 (
+	echo Citadel installed successfully.
+	goto success
+) else (
+	echo Failed to install Citadel.
+	goto failure
+)
+
+:success
+cd "scripts\"
+exit /b 0
+
+:failure
+cd "scripts\"
+exit /b 1

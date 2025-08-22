@@ -20,6 +20,9 @@
 # This file is highly inspired by some open-source .gitignore files:
 #     - Visual Studio: https://raw.githubusercontent.com/github/gitignore/master/VisualStudio.gitignore
 
+# Citadel library folder, because it contains a Git repository
+citadel/
+
 # Local environment files
 local/
 
