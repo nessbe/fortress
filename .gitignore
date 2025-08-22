@@ -23,6 +23,10 @@
 # Citadel library folder, because it contains a Git repository
 citadel/
 
+# Sandbox project files, used to test features
+sandbox/include/
+sandbox/source/
+
 # Local environment files
 local/
 
