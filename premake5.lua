@@ -26,4 +26,7 @@ workspace "fortress"
 
 	architecture "x64"
 
+	startproject "sandbox"
+
 include "citadel"
+include "sandbox"
