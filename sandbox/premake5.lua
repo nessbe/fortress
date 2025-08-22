@@ -29,6 +29,10 @@ project "sandbox"
 	targetdir(root_dir .. "bin/" .. output_dir .. "%{prj.name}")
 	objdir(root_dir .. "obj/" .. output_dir .. "%{prj.name}")
 
+	defines {
+		"CITADEL_LINKAGE_DYNAMIC",
+	}
+
 	files {
 		"include/**.h",
 		"inline/**.inl",
