@@ -45,6 +45,7 @@ project "sandbox"
 		"inline/",
 		root_dir .. "citadel/include/",
 		root_dir .. "citadel/inline/",
+		root_dir .. "vendor/spdlog/include/",
 	}
 
 	links {
@@ -54,6 +55,17 @@ project "sandbox"
 	postbuildcommands {
 		"{COPY} " .. root_dir .. "bin/" .. output_dir .. "citadel/citadel.dll %{cfg.targetdir}"
 	}
+
+	filter "action:vs*"
+		buildoptions {
+			"/utf-8"
+		}
+
+	filter "toolset:gcc or toolset:clang"
+		buildoptions {
+			"-finput-charset=UTF-8",
+			"-fexec-charset=UTF-8",
+		}
 
 	filter "system:windows"
 		systemversion "latest"
