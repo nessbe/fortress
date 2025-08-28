@@ -61,6 +61,8 @@ project "sandbox"
 	filter "configurations:Debug"
 		defines {
 			"SANDBOX_DEBUG",
+			"CITADEL_ENABLE_DEBUGBREAK",
+			"CITADEL_ENABLE_ASSERTIONS",
 		}
 		symbols "On"
 		runtime "Release"
