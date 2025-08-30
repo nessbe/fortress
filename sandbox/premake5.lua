@@ -31,6 +31,7 @@ project "sandbox"
 
 	defines {
 		"CITADEL_LINKAGE_DYNAMIC",
+		"CITADEL_GRAPHICS_API_OPENGL",
 	}
 
 	files {
