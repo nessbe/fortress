@@ -1,4 +1,4 @@
-:: File:        install-citadel.bat
+:: File:        install-dependencies.bat
 :: Project:     fortress
 :: Repository:  https://github.com/nessbe/fortress
 ::
@@ -18,9 +18,9 @@
 :: For more details, see the LICENSE file at the root of the project.
 
 @echo off
+setlocal enabledelayedexpansion
 
-set "REPO_URL=https://github.com/nessbe/citadel"
-set "OUTPUT_DIR=citadel"
+set "DEPENDENCIES=citadel glue"
 
 :: Check if Git is installed
 where git >nul 2>&1
@@ -31,28 +31,36 @@ if %errorlevel% neq 0 (
 	exit /b 1
 )
 
+:: Go into the root directory
 cd "..\"
 
-:: Check if the output directory already exists
-if exist "%OUTPUT_DIR%" (
-	echo Citadel library already installed. Continuing...
-	goto success
+for %%a in (%DEPENDENCIES%) do (
+	set "DEPENDENCY=%%a"
+	set "REPOSITORY=%%a"
+	set "OUTPUT_DIR=%%a"
+	set "REPOSITORY_URL=https://github.com/nessbe/%%a"
+
+	:: Check if the output directory already exists
+	if exist "!OUTPUT_DIR!" (
+		echo !REPOSITORY! library already exists.
+	) else (
+		git clone "!REPOSITORY_URL!" "!OUTPUT_DIR!"
+
+		if !errorlevel! equ 0 (
+			echo !DEPENDENCY! installed successfully.
+		) else (
+			echo Failed to install !DEPENDENCY!.
+			goto failure
+		)
+	)
 )
 
-git clone %REPO_URL% %OUTPUT_DIR%
-
-if %errorlevel% equ 0 (
-	echo Citadel installed successfully.
-	goto success
-) else (
-	echo Failed to install Citadel.
-	goto failure
-)
+goto success
 
 :success
-cd "scripts\"
+cd "scripts"
 exit /b 0
 
 :failure
-cd "scripts\"
+cd "scripts"
 exit /b 1

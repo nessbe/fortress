@@ -19,8 +19,8 @@
 
 @echo off
 
-echo Installing Citadel library...
-call install-citadel.bat
+echo Installing dependencies...
+call install-dependencies.bat
 
 echo Generating project files using Premake...
 call generate-projects.bat

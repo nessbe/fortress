@@ -29,4 +29,5 @@ workspace "fortress"
 	startproject "sandbox"
 
 include "citadel"
+include "glue"
 include "sandbox"
