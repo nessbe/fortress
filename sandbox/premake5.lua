@@ -41,9 +41,15 @@ project "sandbox"
 		"citadel"
 	}
 
+	postbuildcommands {
+		"{COPY} " .. root_dir .. "bin/" .. output_dir .. "citadel/citadel.dll %{cfg.targetdir}"
+	}
+
 	filter "configurations:Debug"
 		defines {
-			"CITADEL_DEBUG"
+			"CITADEL_DEBUG",
+			"CITADEL_ENABLE_DEBUGBREAK",
+			"CITADEL_ENABLE_ASSERTIONS"
 		}
 
 		runtime "Debug"
