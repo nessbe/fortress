@@ -20,6 +20,9 @@
 # Submodules files
 citadel/
 
+sandbox/*
+!sandbox/premake5.lua
+
 # Binary files
 *.exe
 *.lib

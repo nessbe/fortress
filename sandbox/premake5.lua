@@ -1,4 +1,4 @@
--- File:        premake5.lua (root)
+-- File:        premake5.lua (sandbox)
 -- Project:     fortress
 -- Repository:  https://github.com/nessbe/fortress
 --
@@ -17,17 +17,42 @@
 --
 -- For more details, see the LICENSE file at the root of the project.
 
-include "premake_settings.lua"
+project "sandbox"
+	kind "ConsoleApp"
+	staticruntime "Off"
 
-workspace "fortress"
-	configurations {
-		"Debug",
-		"Release"
+	language "C++"
+	cppdialect("C++" .. cpp_dialect)
+
+	targetdir(root_dir .. "bin/" .. output_dir .. "%{prj.name}/")
+	objdir(root_dir .. "bin-int/" .. output_dir .. "%{prj.name}/")
+
+	files {
+		"include/**.h",
+		"source/**.cpp"
 	}
 
-	architecture "x86_64"
+	includedirs {
+		root_dir .. "citadel/include/",
+		"include/"
+	}
 
-	startproject "sandbox"
+	links {
+		"citadel"
+	}
 
-include "citadel"
-include "sandbox"
+	filter "configurations:Debug"
+		defines {
+			"CITADEL_DEBUG"
+		}
+
+		runtime "Debug"
+		symbols "On"
+
+	filter "configurations:Release"
+		defines {
+			"CITADEL_RELEASE"
+		}
+
+		runtime "Release"
+		optimize "On"
