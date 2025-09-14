@@ -29,12 +29,17 @@ project "sandbox"
 
 	files {
 		"include/**.h",
+		"include/**.inl",
 		"source/**.cpp"
 	}
 
 	includedirs {
 		root_dir .. "citadel/include/",
 		"include/"
+	}
+
+	defines {
+		"CITADEL_THIS_LOGGER_NAME=\"SANDBOX\""
 	}
 
 	links {
