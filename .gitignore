@@ -29,5 +29,11 @@ bin-int/
 # Visual Studio cache files
 .vs/
 
+# Visual Studio project files
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+
 # Visual Studio Code cache files
 .vscode/
