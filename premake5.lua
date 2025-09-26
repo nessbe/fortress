@@ -33,3 +33,5 @@ workspace "fortress"
 	}
 
 	architecture "x86_64"
+
+include "citadel"
