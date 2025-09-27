@@ -38,6 +38,14 @@ project "sandbox"
 		root_dir .. "citadel/include"
 	}
 
+	links {
+		"citadel"
+	}
+
+	prebuildcommands {
+		"{COPY} " .. root_dir .. target_dir .. output_dir .. "citadel/citadel.dll %{cfg.targetdir}"
+	}
+
 	filter "configurations:Debug"
 		runtime "Debug"
 		symbols "On"
