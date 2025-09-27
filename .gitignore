@@ -41,6 +41,9 @@ bin-int/
 # Visual Studio Code tasks file
 !.vscode/tasks.json
 
+# Visual Studio Code launch file
+!.vscode/launch.json
+
 # Make files
 Makefile
 GNUMakefile
