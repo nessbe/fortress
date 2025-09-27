@@ -21,6 +21,21 @@
 
 #include <citadel/citadel.hpp>
 
-int main(int argc, char* argv[]) {
-	std::cout << "Hello world" << std::endl;
+class sandbox_application : public citadel::application {
+public:
+	sandbox_application() = default;
+	virtual ~sandbox_application() override = default;
+
+private:
+	virtual void _initialize() override { }
+
+	virtual int _run() override {
+		return 0;
+	}
+
+	virtual void _shutdown() override { }
+};
+
+citadel::application* citadel::create_application() {
+	return new sandbox_application();
 }
