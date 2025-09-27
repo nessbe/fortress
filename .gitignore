@@ -36,7 +36,10 @@ bin-int/
 *.vcxproj.user
 
 # Visual Studio Code cache files
-.vscode/
+.vscode/*
+
+# Visual Studio Code tasks file
+!.vscode/tasks.json
 
 # Make files
 Makefile
