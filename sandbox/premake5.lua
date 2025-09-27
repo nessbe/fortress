@@ -51,7 +51,9 @@ project "sandbox"
 		symbols "On"
 
 		defines {
-			"SANDBOX_DEBUG"
+			"SANDBOX_DEBUG",
+			"CITADEL_ENABLE_DEBUGBREAK",
+			"CITADEL_ENABLE_ASSERTION"
 		}
 
 	filter "configurations:Release"
@@ -59,5 +61,6 @@ project "sandbox"
 		optimize "On"
 
 		defines {
-			"SANDBOX_RELEASE"
+			"SANDBOX_RELEASE",
+			"CITADEL_ENABLE_ASSERTION"
 		}
