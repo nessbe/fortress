@@ -37,3 +37,8 @@ bin-int/
 
 # Visual Studio Code cache files
 .vscode/
+
+# Make files
+Makefile
+GNUMakefile
+*.mk
