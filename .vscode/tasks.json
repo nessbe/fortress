@@ -42,6 +42,16 @@
 				"isDefault": true
 			},
 			"problemMatcher": []
-		}
+		},
+		{
+			"label": "Clean Project",
+			"type": "shell",
+			"command": "cmd /C clean-project.bat",
+			"options": {
+				"cwd": "${workspaceFolder}/scripts/"
+			},
+			"group": "none",
+			"problemMatcher": []
+		},
 	]
 }
