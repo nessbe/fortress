@@ -29,7 +29,15 @@ public:
 private:
 	virtual void _initialize() override { }
 
-	virtual int _run() override {
+	virtual int _run(const citadel::command_line& arguments) override {
+		std::cout << arguments.get_program_name();
+
+		for (std::size_t i = 0; i < arguments.get_argument_count(); i++) {
+			std::cout << arguments[i + 1];
+		};
+
+		std::cout << std::endl;
+
 		return 0;
 	}
 
