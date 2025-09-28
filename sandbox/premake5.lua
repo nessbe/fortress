@@ -27,6 +27,10 @@ project "sandbox"
 	targetdir(root_dir .. target_dir .. output_dir .. "%{prj.name}")
 	objdir(root_dir .. obj_dir .. output_dir .. "%{prj.name}")
 
+	defines {
+		"CITADEL_LINKAGE_STATIC"
+	}
+
 	files {
 		"include/**.hpp",
 		"include/**.inl",
