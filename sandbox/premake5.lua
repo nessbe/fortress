@@ -27,8 +27,28 @@ project "sandbox"
 	targetdir(root_dir .. target_dir .. output_dir .. "%{prj.name}")
 	objdir(root_dir .. obj_dir .. output_dir .. "%{prj.name}")
 
-	defines {
-		"CITADEL_LINKAGE_STATIC"
+	if citadel_linkage == LINKAGE_STATIC then
+		print "Sandbox linked Citadel statically."
+
+		defines {
+			"CITADEL_LINKAGE_STATIC"
+		}
+	elseif citadel_linkage == LINKAGE_DYNAMIC then
+		print "Sandbox linked Citadel dynamically."
+
+		defines {
+			"CITADEL_LINKAGE_DYNAMIC"
+		}
+
+		prebuildcommands {
+			"{COPY} " .. root_dir .. target_dir .. output_dir .. "citadel/citadel.dll %{cfg.targetdir}"
+		}
+	else
+		print "Sandbox does not linked Citadel."
+	end
+
+	links {
+		"citadel"
 	}
 
 	files {
@@ -40,14 +60,6 @@ project "sandbox"
 	includedirs {
 		"include",
 		root_dir .. "citadel/include"
-	}
-
-	links {
-		"citadel"
-	}
-
-	prebuildcommands {
-		"{COPY} " .. root_dir .. target_dir .. output_dir .. "citadel/citadel.dll %{cfg.targetdir}"
 	}
 
 	filter "configurations:Debug"

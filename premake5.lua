@@ -17,6 +17,9 @@
 --
 -- For more details, see the LICENSE file at the root of the project.
 
+LINKAGE_STATIC = 0
+LINKAGE_DYNAMIC = 1
+
 root_dir = "%{wks.location}/"
 
 target_dir = "bin/"
@@ -24,7 +27,9 @@ obj_dir = "bin-int/"
 
 output_dir = "%{cfg.system}/%{cfg.architecture}/%{cfg.buildcfg}/"
 
-cpp_dialect = "C++11"
+cpp_dialect = "C++14"
+
+citadel_linkage = LINKAGE_DYNAMIC
 
 workspace "fortress"
 	configurations {
