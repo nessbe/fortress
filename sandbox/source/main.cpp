@@ -30,13 +30,16 @@ private:
 	virtual void _initialize() override { }
 
 	virtual int _run(const citadel::command_line& arguments) override {
-		std::cout << arguments.get_program_name();
+		citadel::scope<citadel::window> window = citadel::window::create(240, 135, 480, 270, "Sandbox window");
 
-		for (std::size_t i = 0; i < arguments.get_argument_count(); i++) {
-			std::cout << arguments[i + 1];
-		};
+		if (window) {
+			window->open();
+			window->show();
 
-		std::cout << std::endl;
+			while (window->is_open()) {
+				window->update();
+			}
+		}
 
 		return 0;
 	}
