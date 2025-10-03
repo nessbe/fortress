@@ -35,6 +35,9 @@ bin-int/
 *.vcxproj.filters
 *.vcxproj.user
 
+# Visual Studio hint files
+*.hint
+
 # Visual Studio Code cache files
 .vscode/*
 
