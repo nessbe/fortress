@@ -1,4 +1,4 @@
--- File:       premake5.lua (workspace)
+-- File:       settings.lua
 -- Project:    fortress
 -- Repository: https://github.com/nessbe/fortress
 --
@@ -17,17 +17,16 @@
 --
 -- For more details, see the LICENSE file at the root of the project.
 
-include "settings.lua"
+LINKAGE_STATIC = 0
+LINKAGE_DYNAMIC = 1
 
-workspace "fortress"
-	configurations {
-		"Debug",
-		"Release"
-	}
+root_dir = "%{wks.location}/"
 
-	architecture "x86_64"
+target_dir = "bin/"
+obj_dir = "bin-int/"
 
-	startproject "sandbox"
+output_dir = "%{cfg.system}/%{cfg.architecture}/%{cfg.buildcfg}/"
 
-include "citadel"
-include "sandbox"
+cpp_dialect = "C++20"
+
+citadel_linkage = LINKAGE_DYNAMIC
