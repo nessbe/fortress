@@ -21,6 +21,54 @@
 
 #include <citadel/citadel.hpp>
 
+class application_layer : public citadel::layer {
+public:
+	application_layer(const std::string& name)
+		: citadel::layer(name) { }
+
+	virtual ~application_layer() override = default;
+
+	virtual void _attach() override {
+		std::cout << "Application layer attached" << std::endl;
+	}
+
+	virtual void _detach() override {
+		std::cout << "Application layer detached" << std::endl;
+	}
+
+	virtual bool _update() override {
+		return false;
+	}
+
+	virtual bool _render() override {
+		return false;
+	}
+
+	virtual bool _propagate_event(const citadel::reference<citadel::event>& event) override {
+		if (const citadel::reference<citadel::key_event>& key_event = std::reinterpret_pointer_cast<citadel::key_event>(event)) {
+			if (key_event->is_repeated()) {
+				std::cout << "Repeated ";
+			} else if (key_event->is_held()) {
+				std::cout << "Held ";
+			} else if (key_event->is_released()) {
+				std::cout << "Released ";
+			} else if (key_event->is_pressed()) {
+				std::cout << "Pressed ";
+			}
+
+			std::cout << key_event->get_code();
+
+			if (key_event->is_held()) {
+				std::cout << " " << key_event->get_repeat_count() << " times";
+			}
+
+			std::cout << std::endl;
+		}
+
+		return false;
+	}
+};
+
 class sandbox_application : public citadel::application {
 public:
 	sandbox_application() = default;
@@ -32,7 +80,12 @@ private:
 	virtual int _run(const citadel::command_line& arguments) override {
 		citadel::scope<citadel::window> window = citadel::window::create(240, 135, 480, 270, "Sandbox window");
 
+
 		if (window) {
+			citadel::layer_stack& layer_stack = window->get_layer_stack();
+			citadel::reference<application_layer> layer = citadel::make_referenced<application_layer>("Application Layer");
+			layer_stack.push_layer(layer);
+
 			window->open();
 			window->show();
 
