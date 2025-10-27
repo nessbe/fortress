@@ -16,6 +16,9 @@ build/
 
 citadel/
 
+sandbox/include/
+sandbox/source/
+
 Makefile
 *.make
 
