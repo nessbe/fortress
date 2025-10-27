@@ -19,3 +19,5 @@ workspace "fortress"
 		"debug",
 		"release"
 	}
+
+	startproject "sandbox"

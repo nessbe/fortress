@@ -14,3 +14,4 @@
 
 include "fortress.lua"
 include "citadel/citadel.lua"
+include "sandbox/sandbox.lua"
