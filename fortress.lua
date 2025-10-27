@@ -1,4 +1,4 @@
--- File:       premake5.lua
+-- File:       fortress.lua
 -- Project:    fortress
 -- Repository: https://github.com/nessbe/fortress
 --
@@ -12,4 +12,10 @@
 -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 -- See the LICENSE file for details.
 
-include "fortress.lua"
+workspace "fortress"
+	architecture "x86_64"
+
+	configurations {
+		"debug",
+		"release"
+	}
