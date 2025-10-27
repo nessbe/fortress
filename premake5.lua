@@ -13,3 +13,4 @@
 -- See the LICENSE file for details.
 
 include "fortress.lua"
+include "citadel/citadel.lua"
