@@ -17,8 +17,8 @@ project "sandbox"
 	language "C++"
 	cppdialect "C++20"
 
-	targetdir("build/bin")
-	objdir("build/obj")
+	targetdir("%{wks.location}/build/bin")
+	objdir("%{wks.location}/build/obj")
 
 	files {
 		"include/**.hpp",
@@ -30,6 +30,14 @@ project "sandbox"
 		"include"
 	}
 
+	externalincludedirs {
+		"%{wks.location}/citadel/include"
+	}
+
+	links {
+		"citadel"
+	}
+
 	filter "action:gmake"
 		buildoptions "-Wall"
 
@@ -37,11 +45,19 @@ project "sandbox"
 		buildoptions "/Wall"
 
 	filter "configurations:debug"
-		defines "SANDBOX_DEBUG"
+		defines {
+			"SANDBOX_DEBUG",
+			"CITADEL_DEBUG"
+		}
+
 		symbols "On"
 		runtime "Debug"
 
 	filter "configurations:release"
-		defines "SANDBOX_RELEASE"
+		defines {
+			"SANDBOX_RELEASE",
+			"CITADEL_RELEASE"
+		}
+
 		optimize "On"
 		runtime "Release"
